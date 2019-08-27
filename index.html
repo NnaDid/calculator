@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>calculator</title>
+  <link rel ="stylesheet" href ="css/main.css"/>
+
+   
+</head>
+
+<body>
+  <center><p class ="top">Simple Javascript Calculator</p></center>
+    <div class ="container">
+         <!--    Display Result-->
+          <p class ="resCon">
+            <input type ="text" id ="rs" value ="0"/>
+          </p>
+          <div class="grid-container">
+            <!-- Numbers   -->
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>0</button>
+
+<!--    Operators -->
+            <button>+</button>
+            <button>-</button>
+            <button>*</button>
+            <button>/</button>
+            <input  onClick ="javascript:result(this);"  id ="equals"value="=" type ="button">
+            <input  onClick ="javascript:result(this);"  id ="clear"value= "c"  type ="button">
+            <input    id ="mPlus"value= "m+"  type ="button">
+            <input    id ="mShow"value= "m"  type ="button">
+          </div>
+
+    </div>
+    <center><p class ="top">By NnaDid  <script>document.write(new Date());</script></p></center>
+
+    
+  <script>
+
+      // alert("I am still here don't Worry");
+      let button = document.getElementsByTagName('button');
+      let ans    = document.getElementById("rs");
+      let mPlus  = document.getElementById("mPlus");
+      let mShow  = document.getElementById("mShow");
+      ans.addEventListener("focus",function(){ans.value=""});
+      ans.addEventListener("focusout",function(){ans.value="0"});
+      var getVals = function(){
+               for(let i =0;i<=button.length;++i){
+                button[i].onclick = function(){
+                   ans.value+=button[i].innerText;  
+                }
+            }
+      }
+
+      let ansArr  =[];
+        mPlus.addEventListener("click",function(){
+          ansArr[0]=(ans.value);
+        });
+      mShow.addEventListener("click",function(){
+        ans.value = Number(ansArr[0]);
+      });
+       getVals();
+      function result(obj){
+         let opArr  = ["+","-","x","/","=","c"];
+         if(opArr.includes(obj.value)){
+            switch(obj.value){                
+                case 'c':
+                   ans.value ="";
+                break;
+
+                case '=':
+                ans.value =Number(eval(ans.value));
+                break;
+
+                default:
+                  ans.value =0;
+                break;
+
+            }
+         }
+      }
+  
+
+  
+        
+  </script>
+</body>
+</html>
